@@ -10,9 +10,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.13",
+    "pinia": "^2.0.28",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.4",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
+    "vue-router": "^4.0.3"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
