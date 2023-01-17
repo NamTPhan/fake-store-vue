@@ -240,8 +240,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-</style>
+<style scoped lang="scss"></style>
