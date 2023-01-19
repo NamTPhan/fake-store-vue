@@ -1,18 +1,73 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <div class="min-h-full">
+      <nav-bar />
+
+      <header class="bg-white shadow">
+        <div class="mx-auto max-w-7xl py-3 px-4 sm:px-4 lg:px-6">
+          <h1 class="text-2xl font-bold tracking-tight text-gray-900">
+            Product Store
+          </h1>
+        </div>
+      </header>
+
+      <div class="flex flex-row flex-wrap justify-center mx-5 my-3">
+        <select
+          id="categories"
+          class="md:hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Select a category</option>
+          <option
+            v-for="category in getProductCategories"
+            :key="category"
+            :value="category"
+          >
+            {{ category }}
+          </option>
+        </select>
+
+        <button
+          v-for="category in getProductCategories"
+          :key="category"
+          class="hidden md:block group relative h-12 w-48 mr-2 my-2 overflow-hidden rounded-lg bg-white text-lg shadow"
+        >
+          <div
+            class="absolute inset-0 w-3 bg-green-500 transition-all duration-[250ms] ease-out group-hover:w-full"
+          ></div>
+          <span class="relative text-black group-hover:text-white capitalize">
+            {{ category }}</span
+          >
+        </button>
+      </div>
+
+      <div>
+        <div class="max-w-7xl py-4 px-6">
+          <div class="">
+            <ProductCard
+              product-name="Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport"
+              :price="999"
+              :rating="5"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+<script lang="ts" setup>
+import NavBar from '@/components/NavBar.vue';
+import ProductCard from '@/components/ProductCard.vue';
+import { computed, onMounted } from 'vue';
+import { useProductsStore } from '../store/index';
 
-export default defineComponent({
-  name: "HomeView",
-  components: {
-    HelloWorld,
-  },
+const store = useProductsStore();
+
+const getProductCategories = computed(() => {
+  return store.getProductCategories;
+});
+
+onMounted(() => {
+  store.fetchProductCategories();
 });
 </script>
