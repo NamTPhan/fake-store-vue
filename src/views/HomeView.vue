@@ -11,11 +11,25 @@
         </div>
       </header>
 
-      <div class="flex flex-row flex-wrap mx-5 my-3">
+      <div class="flex flex-row flex-wrap justify-center mx-5 my-3">
+        <select
+          id="categories"
+          class="md:hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected>Select a category</option>
+          <option
+            v-for="category in getProductCategories"
+            :key="category"
+            :value="category"
+          >
+            {{ category }}
+          </option>
+        </select>
+
         <button
           v-for="category in getProductCategories"
           :key="category"
-          class="group relative h-12 w-48 mr-2 my-2 overflow-hidden rounded-lg bg-white text-lg shadow"
+          class="hidden md:block group relative h-12 w-48 mr-2 my-2 overflow-hidden rounded-lg bg-white text-lg shadow"
         >
           <div
             class="absolute inset-0 w-3 bg-green-500 transition-all duration-[250ms] ease-out group-hover:w-full"
@@ -27,8 +41,14 @@
       </div>
 
       <div>
-        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-          <div class="px-4 py-6 sm:px-0"></div>
+        <div class="max-w-7xl py-4 px-6">
+          <div class="">
+            <ProductCard
+              product-name="Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport"
+              :price="999"
+              :rating="5"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -37,7 +57,7 @@
 
 <script lang="ts" setup>
 import NavBar from '@/components/NavBar.vue';
-import Banner from '@/components/Banner.vue';
+import ProductCard from '@/components/ProductCard.vue';
 import { computed, onMounted } from 'vue';
 import { useProductsStore } from '../store/index';
 
