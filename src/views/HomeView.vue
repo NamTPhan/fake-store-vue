@@ -36,9 +36,10 @@
 </template>
 
 <script lang="ts" setup>
-import NavBar from "@/components/NavBar.vue";
-import { computed, onMounted } from "vue";
-import { useProductsStore } from "../store/index";
+import NavBar from '@/components/NavBar.vue';
+import Banner from '@/components/Banner.vue';
+import { computed, onMounted } from 'vue';
+import { useProductsStore } from '../store/index';
 
 const store = useProductsStore();
 
