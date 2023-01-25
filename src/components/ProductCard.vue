@@ -3,7 +3,7 @@
     <div class="flex self-center">
       <a href="#">
         <img
-          class="rounded-t-lg max-h-[150px]"
+          class="rounded-t-lg h-[150px]"
           :src="props.thumbnail"
           alt="product image"
         />
@@ -12,7 +12,7 @@
     <div class="flex self-center">
       <a href="#">
         <h3
-          class="text-gray-900 font-semibold text-xl tracking-tight dark:text-white"
+          class="text-gray-900 font-semibold text-lg tracking-tight dark:text-white"
         >
           {{ props.productName }}
         </h3>
@@ -81,6 +81,37 @@
       </span>
     </div>
     <div class="flex justify-end mt-auto">
+      <button
+        href="#"
+        class="bg-white hover:text-white rounded-full mr-2 p-2 text-center"
+      >
+        <svg
+          class="h-7 text-gray-400"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12.62 20.8101C12.28 20.9301 11.72 20.9301 11.38 20.8101C8.48 19.8201 2 15.6901 2 8.6901C2 5.6001 4.49 3.1001 7.56 3.1001C9.38 3.1001 10.99 3.9801 12 5.3401C13.01 3.9801 14.63 3.1001 16.44 3.1001C19.51 3.1001 22 5.6001 22 8.6901C22 15.6901 15.52 19.8201 12.62 20.8101Z"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <!-- filled -->
+        <!-- <svg
+          class="h-7 text-red-400"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16.44 3.10156C14.63 3.10156 13.01 3.98156 12 5.33156C10.99 3.98156 9.37 3.10156 7.56 3.10156C4.49 3.10156 2 5.60156 2 8.69156C2 9.88156 2.19 10.9816 2.52 12.0016C4.1 17.0016 8.97 19.9916 11.38 20.8116C11.72 20.9316 12.28 20.9316 12.62 20.8116C15.03 19.9916 19.9 17.0016 21.48 12.0016C21.81 10.9816 22 9.88156 22 8.69156C22 5.60156 19.51 3.10156 16.44 3.10156Z"
+            fill="currentColor"
+          />
+        </svg> -->
+      </button>
       <button
         href="#"
         class="bg-white hover:text-white hover:bg-green-500 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center"
