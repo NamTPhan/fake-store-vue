@@ -30,6 +30,7 @@
           v-for="category in getProductCategories"
           :key="category"
           class="hidden md:block group relative h-12 w-48 mr-2 my-2 overflow-hidden rounded-lg bg-white text-lg shadow"
+          @click="getProductsFromCategory(category)"
         >
           <div
             class="absolute inset-0 w-3 bg-green-500 transition-all duration-[250ms] ease-out group-hover:w-full"
@@ -40,26 +41,29 @@
         </button>
       </div>
 
-      <div>
-        <div class="max-w-7xl py-4 px-6">
-          <div class="">
-            <ProductCard
-              product-name="Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport"
-              :price="999"
-              :rating="5"
-            />
-          </div>
+      <div class="flex flex-col md:flex-row justify-center flex-wrap py-4 px-6">
+        <div
+          v-for="product in getProducts"
+          :key="product.id"
+          class="flex justify-center mx-2 my-2"
+        >
+          <ProductCard
+            :product-name="product.title"
+            :price="product.price"
+            :rating="product.rating"
+            :thumbnail="product.thumbnail"
+          />
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import NavBar from '@/components/NavBar.vue';
 import ProductCard from '@/components/ProductCard.vue';
 import { computed, onMounted } from 'vue';
-import { useProductsStore } from '../store/index';
+import { useProductsStore } from '../store/products';
 
 const store = useProductsStore();
 
@@ -67,7 +71,16 @@ const getProductCategories = computed(() => {
   return store.getProductCategories;
 });
 
+const getProducts = computed(() => {
+  return store.getProducts;
+});
+
 onMounted(() => {
   store.fetchProductCategories();
+  store.fetchAllProducts();
 });
+
+const getProductsFromCategory = (category) => {
+  store.fetchProductsFromCategory(category);
+};
 </script>
