@@ -10,12 +10,8 @@ export const useProductsStore = defineStore('products', {
     };
   },
   getters: {
-    getProductCategories(state) {
-      return state.categories;
-    },
-    getProducts(state) {
-      return state.products;
-    },
+    getProductCategories: (state) => state.categories,
+    getProducts: (state) => state.products,
   },
   actions: {
     async fetchProductCategories() {
