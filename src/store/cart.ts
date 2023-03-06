@@ -7,9 +7,7 @@ export const useCartStore = defineStore('cart', {
     };
   },
   getters: {
-    getCartItems(state) {
-      return state.cart;
-    },
+    getCartItems: (state) => state.cart,
   },
   actions: {
     addToCart(product: never) {

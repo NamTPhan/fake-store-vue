@@ -7,9 +7,7 @@ export const useFavoritetore = defineStore('favorites', {
     };
   },
   getters: {
-    getFavorites(state) {
-      return state.favorites;
-    },
+    getFavorites: (state) => state.favorites,
   },
   actions: {
     addFavorite(product: never) {
