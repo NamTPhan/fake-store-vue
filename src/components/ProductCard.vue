@@ -29,12 +29,12 @@
       </span>
     </div>
     <div class="flex justify-between">
-      <span class="text-xl font-bold text-gray-900"> € {{ price }},-</span>
+      <span class="text-xl font-bold text-gray-900">€ {{ price }},-</span>
     </div>
     <div class="flex justify-end mt-auto">
       <button
-        href="#"
         class="bg-white hover:text-white rounded-full p-2 text-center"
+        @click="favoriteChange"
       >
         <img
           v-if="isFavorite"
@@ -48,8 +48,8 @@
         />
       </button>
       <button
-        href="#"
         class="bg-white hover:text-white hover:bg-green-500 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center"
+        @click="addToCart"
       >
         Add to Cart
       </button>
@@ -57,8 +57,8 @@
   </div>
 </template>
 
-<script setup>
-import { defineProps } from 'vue';
+<script setup lang="ts">
+import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
   productId: Number,
@@ -74,6 +74,16 @@ const props = defineProps({
   thumbnail: String,
   isFavorite: { type: Boolean, default: false },
 });
+
+const emit = defineEmits(['handleFavoriteChange', 'handleAddToCart']);
+
+const favoriteChange = () => {
+  emit('handleFavoriteChange');
+};
+
+const addToCart = () => {
+  emit('handleAddToCart');
+};
 </script>
 
 <style lang="scss" scoped>

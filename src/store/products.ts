@@ -1,14 +1,19 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import { IProduct } from '@/interfaces/product';
+
+interface State {
+  categories: string[];
+  products: IProduct[];
+  productInfo: IProduct | undefined;
+}
 
 export const useProductsStore = defineStore('products', {
-  state: () => {
-    return {
-      categories: [],
-      products: [],
-      productInfo: null,
-    };
-  },
+  state: (): State => ({
+    categories: [],
+    products: [],
+    productInfo: undefined,
+  }),
   getters: {
     getProductCategories: (state) => state.categories,
     getProducts: (state) => state.products,
@@ -49,4 +54,5 @@ export const useProductsStore = defineStore('products', {
         .catch((err) => console.log(err));
     },
   },
+  persist: true,
 });

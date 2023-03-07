@@ -5,6 +5,7 @@ import { createPinia } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import { jwtInterceptor, responseInterceptor } from '@/helpers/interceptors';
 import './index.scss';
 
 const pinia = createPinia();
@@ -14,5 +15,8 @@ app.use(pinia);
 app.use(router);
 app.use(VueAxios, axios);
 pinia.use(piniaPluginPersistedstate);
+
+jwtInterceptor();
+responseInterceptor();
 
 app.mount('#app');
