@@ -2,7 +2,7 @@
   <div class="flex w-full">
     <input
       :id="id"
-      class="w-full bg-[#F2F2F2] px-3 py-1 rounded-2xl rounded-r-none focus:outline-none"
+      class="w-full bg-[#F2F2F2] px-4 py-1 rounded-2xl rounded-r-none focus:outline-none"
       :classes="classes"
       type="text"
       :name="name"
@@ -10,9 +10,9 @@
       :value="modelValue"
       @input="updateValue"
     />
-    <div class="bg-[#F2F2F2] rounded-r-2xl h-full">
+    <div class="bg-[#F2F2F2] rounded-r-3xl h-full">
       <button
-        class="bg-[#0ea5e9] rounded-full h-full p-2"
+        class="bg-green-500 rounded-full h-full p-2"
         @click="handleSearch"
       >
         <img src="../assets/svg/search.svg" alt="search" />
