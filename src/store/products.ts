@@ -54,4 +54,5 @@ export const useProductsStore = defineStore('products', {
         .catch((err) => console.log(err));
     },
   },
+  persist: true,
 });
