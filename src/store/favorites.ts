@@ -1,24 +1,29 @@
+import { IProduct } from '@/interfaces/product';
 import { defineStore } from 'pinia';
 
 export const useFavoritetore = defineStore('favorites', {
-  state: (): any => {
-    return {
-      favorites: [],
-    };
-  },
+  state: (): any => ({
+    favorites: [],
+  }),
   getters: {
-    getFavorites(state) {
-      return state.favorites;
-    },
+    getFavorites: (state) => state.favorites,
   },
   actions: {
-    addFavorite(product: never) {
-      this.favorites.push(product);
+    addRemoveFavorite(product: IProduct) {
+      if (this.isProductInFavorites(product)) {
+        this.favorites = this.favorites.filter(
+          (favorite: IProduct) => favorite.id !== product.id
+        );
+      } else {
+        this.favorites.push(product);
+      }
     },
 
-    removeFavorite(id: number) {
-      const indexOfProductInCart = this.favorites.indexOf(id);
-      this.favorites.splice(indexOfProductInCart, 1);
+    isProductInFavorites(product: IProduct): boolean {
+      return this.favorites.some(
+        (favorite: IProduct) => favorite.id === product.id
+      );
     },
   },
+  persist: true,
 });
