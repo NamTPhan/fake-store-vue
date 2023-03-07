@@ -85,7 +85,7 @@
               </div>
             </div>
 
-            <button type="button">
+            <button type="button" @click="toggleCartSideBar">
               <span class="sr-only">Cart</span>
               <img src="../assets/svg/cart.svg" alt="cart" />
             </button>
@@ -215,14 +215,21 @@
       </div>
     </div>
   </nav>
+  <shopping-cart-side-bar
+    v-if="isCartSideBarOpen"
+    @close-side-bar="toggleCartSideBar"
+  />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
+import ShoppingCartSideBar from './ShoppingCartSideBar.vue';
 
-export default defineComponent({
-  name: 'NavBar',
-});
+const isCartSideBarOpen = ref(false);
+
+const toggleCartSideBar = () => {
+  isCartSideBarOpen.value = !isCartSideBarOpen.value;
+};
 </script>
 
 <style scoped lang="scss"></style>
