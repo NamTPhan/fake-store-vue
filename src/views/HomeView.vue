@@ -52,8 +52,9 @@
             :price="product.price"
             :rating="product.rating"
             :thumbnail="product.thumbnail"
-            :is-favorite="getFavorites.includes(product)"
-            @handle-favorite-change="addRemoveFavorite(product)"
+            :is-favorite="isProductInFavorites(product)"
+            @handle-favorite-change="favoriteStore.addRemoveFavorite(product)"
+            @handle-add-to-cart="cartStore.addToCart(product)"
           />
         </div>
       </div>
@@ -65,12 +66,14 @@
 import NavBar from '@/components/NavBar.vue';
 import ProductCard from '@/components/ProductCard.vue';
 import { IProduct } from '@/interfaces/product';
+import { useCartStore } from '@/store/cart';
 import { useFavoritetore } from '@/store/favorites';
 import { computed, onMounted } from 'vue';
 import { useProductsStore } from '../store/products';
 
 const productStore = useProductsStore();
 const favoriteStore = useFavoritetore();
+const cartStore = useCartStore();
 
 const getProductCategories = computed(() => {
   return productStore.getProductCategories;
@@ -78,10 +81,6 @@ const getProductCategories = computed(() => {
 
 const getProducts = computed(() => {
   return productStore.getProducts;
-});
-
-const getFavorites = computed(() => {
-  return favoriteStore.getFavorites;
 });
 
 onMounted(() => {
@@ -93,7 +92,9 @@ const getProductsFromCategory = (category: string): void => {
   productStore.fetchProductsFromCategory(category);
 };
 
-const addRemoveFavorite = (product: IProduct): void => {
-  favoriteStore.addRemoveFavorite(product);
+const isProductInFavorites = (product: IProduct): boolean => {
+  return favoriteStore.getFavorites.some(
+    (favorite: IProduct) => favorite.id === product.id
+  );
 };
 </script>

@@ -33,7 +33,6 @@
     </div>
     <div class="flex justify-end mt-auto">
       <button
-        href="#"
         class="bg-white hover:text-white rounded-full p-2 text-center"
         @click="favoriteChange"
       >
@@ -49,9 +48,8 @@
         />
       </button>
       <button
-        href="#"
         class="bg-white hover:text-white hover:bg-green-500 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center"
-        @click="() => addToCart"
+        @click="addToCart"
       >
         Add to Cart
       </button>
@@ -75,13 +73,16 @@ const props = defineProps({
   discountPercentage: Number,
   thumbnail: String,
   isFavorite: { type: Boolean, default: false },
-  addToCart: Function,
 });
 
-const emit = defineEmits(['handleFavoriteChange']);
+const emit = defineEmits(['handleFavoriteChange', 'handleAddToCart']);
 
 const favoriteChange = () => {
   emit('handleFavoriteChange');
+};
+
+const addToCart = () => {
+  emit('handleAddToCart');
 };
 </script>
 

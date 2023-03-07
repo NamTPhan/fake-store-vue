@@ -5,16 +5,6 @@
     role="dialog"
     aria-modal="true"
   >
-    <!--
-    Background backdrop, show/hide based on slide-over state.
-
-    Entering: "ease-in-out duration-500"
-      From: "opacity-0"
-      To: "opacity-100"
-    Leaving: "ease-in-out duration-500"
-      From: "opacity-100"
-      To: "opacity-0"
-  -->
     <div
       class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
     ></div>
@@ -24,16 +14,6 @@
         <div
           class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10"
         >
-          <!--
-          Slide-over panel, show/hide based on slide-over state.
-
-          Entering: "transform transition ease-in-out duration-500 sm:duration-700"
-            From: "translate-x-full"
-            To: "translate-x-0"
-          Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
-            From: "translate-x-0"
-            To: "translate-x-full"
-        -->
           <div class="pointer-events-auto w-screen max-w-md">
             <div
               class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl"
@@ -62,7 +42,7 @@
                   <div class="flow-root">
                     <ul role="list" class="-my-6 divide-y divide-gray-200">
                       <li
-                        v-for="product in productsInCart"
+                        v-for="(product, index) in productsInCart"
                         :key="product.id"
                         class="flex py-6"
                       >
@@ -82,11 +62,15 @@
                               class="flex justify-between text-base font-medium text-gray-900"
                             >
                               <h3>
-                                <a href="#">Throwback Hip Bag</a>
+                                <a href="#">{{ product.title }}</a>
                               </h3>
-                              <p class="ml-4">€ {{ product.price }},-</p>
+                              <p class="ml-4">€&nbsp;{{ product.price }},-</p>
                             </div>
-                            <p class="mt-1 text-sm text-gray-500">Salmon</p>
+                            <p
+                              class="mt-1 text-sm text-left capitalize text-gray-500"
+                            >
+                              Category: {{ product.category }}
+                            </p>
                           </div>
                           <div
                             class="flex flex-1 items-end justify-between text-sm"
@@ -97,6 +81,7 @@
                               <button
                                 type="button"
                                 class="font-medium text-indigo-600 hover:text-indigo-500"
+                                @click="cartStore.removeFromCart(index)"
                               >
                                 Remove
                               </button>
@@ -114,7 +99,7 @@
                   class="flex justify-between text-base font-medium text-gray-900"
                 >
                   <p>Subtotal</p>
-                  <p>$262.00</p>
+                  <p>€&nbsp;{{ cartTotal }}</p>
                 </div>
                 <p class="mt-0.5 text-sm text-gray-500">
                   Shipping and taxes calculated at checkout.
@@ -134,6 +119,7 @@
                     <button
                       type="button"
                       class="font-medium text-indigo-600 hover:text-indigo-500"
+                      @click="handleCloseSideBar"
                     >
                       Continue Shopping
                       <span aria-hidden="true"> &rarr;</span>
@@ -150,6 +136,7 @@
 </template>
 
 <script setup lang="ts">
+import { IProduct } from '@/interfaces/product';
 import { defineEmits, computed } from 'vue';
 import { useCartStore } from '../store/cart';
 
@@ -158,6 +145,16 @@ const emit = defineEmits(['closeSideBar']);
 
 const productsInCart = computed(() => {
   return cartStore.getCartItems;
+});
+
+const cartTotal = computed(() => {
+  const initialValue = 0;
+  const sumPrices = cartStore.getCartItems.reduce(
+    (total: number, amount: IProduct) => (total += amount['price']),
+    initialValue
+  );
+
+  return sumPrices;
 });
 
 const handleCloseSideBar = () => {

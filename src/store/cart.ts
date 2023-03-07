@@ -2,11 +2,9 @@ import { IProduct } from '@/interfaces/product';
 import { defineStore } from 'pinia';
 
 export const useCartStore = defineStore('cart', {
-  state: (): any => {
-    return {
-      cart: [],
-    };
-  },
+  state: (): any => ({
+    cart: [],
+  }),
   getters: {
     getCartItems: (state) => state.cart,
   },
@@ -19,4 +17,5 @@ export const useCartStore = defineStore('cart', {
       this.cart.splice(index, 1);
     },
   },
+  persist: true,
 });

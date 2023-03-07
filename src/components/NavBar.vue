@@ -215,14 +215,22 @@
       </div>
     </div>
   </nav>
-  <shopping-cart-side-bar
-    v-if="isCartSideBarOpen"
-    @close-side-bar="toggleCartSideBar"
-  />
+  <indeterminate-progress-bar />
+  <transition
+    enter-from-class="opacity-0"
+    enter-active-class="transition duration-300"
+    leave-to-class="opacity-0"
+    leave-active-class="transition duration-300"
+  >
+    <shopping-cart-side-bar
+      v-if="isCartSideBarOpen"
+      @close-side-bar="toggleCartSideBar"
+  /></transition>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import IndeterminateProgressBar from './IndeterminateProgressBar.vue';
 import ShoppingCartSideBar from './ShoppingCartSideBar.vue';
 
 const isCartSideBarOpen = ref(false);
