@@ -1,3 +1,4 @@
+import { IProduct } from '@/interfaces/product';
 import { defineStore } from 'pinia';
 
 export const useCartStore = defineStore('cart', {
@@ -10,13 +11,12 @@ export const useCartStore = defineStore('cart', {
     getCartItems: (state) => state.cart,
   },
   actions: {
-    addToCart(product: never) {
+    addToCart(product: IProduct) {
       this.cart.push(product);
     },
 
-    removeFromCart(id: number) {
-      const indexOfProductInCart = this.cart.indexOf(id);
-      this.cart.splice(indexOfProductInCart, 1);
+    removeFromCart(index: number) {
+      this.cart.splice(index, 1);
     },
   },
 });

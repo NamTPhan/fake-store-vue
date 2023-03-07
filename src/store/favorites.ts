@@ -10,13 +10,14 @@ export const useFavoritetore = defineStore('favorites', {
     getFavorites: (state) => state.favorites,
   },
   actions: {
-    addFavorite(product: never) {
-      this.favorites.push(product);
-    },
+    addRemoveFavorite(product: never) {
+      const indexOfProductInFavorites = this.favorites.indexOf(product);
 
-    removeFavorite(id: number) {
-      const indexOfProductInCart = this.favorites.indexOf(id);
-      this.favorites.splice(indexOfProductInCart, 1);
+      if (indexOfProductInFavorites === -1) {
+        this.favorites.push(product);
+      } else {
+        this.favorites.splice(indexOfProductInFavorites, 1);
+      }
     },
   },
 });
