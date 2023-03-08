@@ -103,7 +103,7 @@
       </div>
     </div>
 
-    <!-- Mobile menu, show/hide based on menu state.TODO remove hidden -->
+    <!-- Mobile menu, show/hide based on menu state. -->
     <div id="mobile-menu" class="block md:hidden">
       <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
         <a

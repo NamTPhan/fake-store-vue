@@ -17,6 +17,7 @@ export const useProductsStore = defineStore('products', {
   getters: {
     getProductCategories: (state) => state.categories,
     getProducts: (state) => state.products,
+    getProductInfo: (state) => state.productInfo,
   },
   actions: {
     async fetchProductCategories() {
@@ -33,7 +34,7 @@ export const useProductsStore = defineStore('products', {
         .catch((err) => console.log(err));
     },
 
-    async fetchSingleProduct(productId: string | number) {
+    async fetchSingleProduct(productId: number) {
       axios
         .get<any>(`https://dummyjson.com/products/${productId}`)
         .then((res) => (this.productInfo = res.data))
