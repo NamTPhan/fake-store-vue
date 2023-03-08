@@ -80,7 +80,7 @@
                             <div class="flex">
                               <button
                                 type="button"
-                                class="font-medium text-indigo-600 hover:text-indigo-500"
+                                class="font-medium text-red-500 hover:text-indigo-500"
                                 @click="cartStore.removeFromCart(index)"
                               >
                                 Remove
@@ -107,7 +107,7 @@
                 <div class="mt-6">
                   <a
                     href="#"
-                    class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                    class="flex items-center justify-center rounded-md border border-transparent bg-green-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-sky-500"
                     >Checkout</a
                   >
                 </div>
@@ -118,7 +118,7 @@
                     or
                     <button
                       type="button"
-                      class="font-medium text-indigo-600 hover:text-indigo-500"
+                      class="font-medium text-sky-500 hover:text-indigo-500"
                       @click="handleCloseSideBar"
                     >
                       Continue Shopping

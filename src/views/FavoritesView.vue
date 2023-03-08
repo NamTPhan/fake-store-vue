@@ -1,12 +1,8 @@
 <template>
   <div class="min-h-full">
-    <nav-bar />
-
     <header class="bg-white shadow">
       <div class="mx-auto max-w-7xl py-3 px-4 sm:px-4 lg:px-6">
-        <h1 class="text-2xl font-bold tracking-tight text-gray-900">
-          Favorites
-        </h1>
+        <h1 class="text-2xl font-bold tracking-tight text-center">Favorites</h1>
       </div>
     </header>
 
@@ -17,6 +13,7 @@
         class="flex justify-center mx-2 my-2"
       >
         <ProductCard
+          :product-id="product.id"
           :product-name="product.title"
           :price="product.price"
           :rating="product.rating"
@@ -31,7 +28,6 @@
 </template>
 
 <script setup lang="ts">
-import NavBar from '@/components/NavBar.vue';
 import ProductCard from '@/components/ProductCard.vue';
 import { IProduct } from '@/interfaces/product';
 import { useCartStore } from '@/store/cart';

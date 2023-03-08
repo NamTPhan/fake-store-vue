@@ -1,13 +1,12 @@
 <template>
   <div class="card-container">
     <div class="flex self-center">
-      <a href="#">
-        <img
-          class="rounded-t-lg h-[150px]"
-          :src="thumbnail"
-          alt="product image"
-        />
-      </a>
+      <img
+        class="rounded-t-lg h-[150px] cursor-pointer"
+        :src="thumbnail"
+        :alt="productName"
+        @click="router.push({ name: 'ProductInfo', params: { id: productId } })"
+      />
     </div>
     <div class="flex self-center">
       <a href="#">
@@ -29,7 +28,7 @@
       </span>
     </div>
     <div class="flex justify-between">
-      <span class="text-xl font-bold text-gray-900">€ {{ price }},-</span>
+      <span class="text-xl font-bold text-gray-900">€&nbsp;{{ price }},-</span>
     </div>
     <div class="flex justify-end mt-auto">
       <button
@@ -59,6 +58,9 @@
 
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const props = defineProps({
   productId: Number,
