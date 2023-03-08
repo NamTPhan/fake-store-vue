@@ -16,35 +16,37 @@
           <search-bar placeholder="Search in store" />
         </div>
         <div class="hidden md:block">
-          <div class="ml-4 flex items-center md:ml-6">
-            <a
-              href="#"
-              class="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >Login</a
-            >
+          <div class="ml-4 flex items-center md:ml-6 space-x-2">
+            <!-- TODO: Remove div hidden -->
+            <div class="hidden">
+              <a
+                href="#"
+                class="text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >Login</a
+              >
 
-            <button
-              id="user-menu-button"
-              type="button"
-              class="flex max-w-xs items-center mx-2 rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-              aria-expanded="false"
-              aria-haspopup="true"
-            >
-              <span class="sr-only">Open user menu</span>
-              <img
-                class="h-8 w-8 rounded-full"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                alt=""
-              />
-            </button>
-
+              <button
+                id="user-menu-button"
+                type="button"
+                class="flex max-w-xs items-center mx-2 rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                aria-expanded="false"
+                aria-haspopup="true"
+              >
+                <span class="sr-only">Open user menu</span>
+                <img
+                  class="h-8 w-8 rounded-full"
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt=""
+                />
+              </button>
+            </div>
             <button type="button" @click="router.push({ name: 'Favorites' })">
               <span class="sr-only">View Favorites</span>
               <img src="../assets/svg/heart-filled-red.svg" alt="favorite" />
             </button>
 
-            <!-- Profile dropdown -->
-            <div class="relative mx-1">
+            <!-- Profile dropdown TODO: Remove hidden -->
+            <div class="hidden relative mx-1">
               <!--
                 Dropdown menu, show/hide based on menu state.
 
@@ -87,7 +89,18 @@
             </button>
           </div>
         </div>
-        <div class="-mr-2 flex md:hidden">
+        <div class="-mr-2 flex md:hidden space-x-3">
+          <button type="button" @click="router.push({ name: 'Favorites' })">
+            <span class="sr-only">View Favorites</span>
+            <img
+              src="../assets/svg/heart-filled-red.svg"
+              alt="favorite"
+            /></button
+          ><button type="button" @click="toggleCartSideBar">
+            <span class="sr-only">Cart</span>
+            <img src="../assets/svg/cart.svg" alt="cart" />
+          </button>
+
           <!-- Mobile menu button -->
           <button
             type="button"
@@ -96,30 +109,44 @@
             aria-expanded="false"
           >
             <span class="sr-only">Open main menu</span>
-            <!-- <img src="../assets/svg/outline-bars-3.svg" alt="menu" /> -->
-            <img src="../assets/svg/cross-white.svg" alt="close-menu" />
+            <img
+              v-if="!isMobileMenuOpen"
+              src="../assets/svg/outline-bars-3.svg"
+              alt="menu"
+              @click="toggleMobileMenu"
+            />
+            <img
+              v-if="isMobileMenuOpen"
+              src="../assets/svg/cross-white.svg"
+              alt="close-menu"
+              @click="toggleMobileMenu"
+            />
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Mobile menu, show/hide based on menu state. -->
-    <div id="mobile-menu" class="block md:hidden">
+    <!-- Mobile menu, show/hide based on menu state-->
+    <div v-if="isMobileMenuOpen" id="mobile-menu" class="block md:hidden">
       <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+        <search-bar placeholder="Search in store" />
+        <!-- TODO: Replace hidden with block -->
         <a
           href="#"
-          class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+          class="hidden bg-gray-900 text-white px-3 py-2 rounded-md text-base font-medium"
           aria-current="page"
           >Favorites</a
         >
 
+        <!-- TODO: Replace hidden with block -->
         <a
           href="#"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+          class="hidden text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
           >Lorem ipsum</a
         >
       </div>
-      <div class="border-t border-gray-700 pt-4 pb-3">
+      <!-- TODO: Remove hidden -->
+      <div class="hidden border-t border-gray-700 pt-4 pb-3">
         <div class="space-y-1 px-2">
           <a
             href="#"
@@ -136,6 +163,7 @@
     </div>
   </nav>
   <indeterminate-progress-bar />
+
   <transition
     enter-from-class="opacity-0"
     enter-active-class="transition duration-300"
@@ -158,8 +186,13 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const isCartSideBarOpen = ref(false);
+const isMobileMenuOpen = ref(false);
 
 const toggleCartSideBar = () => {
   isCartSideBarOpen.value = !isCartSideBarOpen.value;
+};
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
 </script>
