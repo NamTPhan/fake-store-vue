@@ -6,7 +6,11 @@
           <div class="flex-shrink-0">
             <img class="h-8 w-8" src="../assets/logo.png" alt="Your Company" />
           </div>
-          <span class="text-white ml-2">Fake Store</span>
+          <span
+            class="text-white ml-2 cursor-pointer"
+            @click="router.push({ name: 'Home' })"
+            >Fake Store</span
+          >
         </div>
         <div class="hidden sm:block">
           <search-bar placeholder="Search in store" />
@@ -34,7 +38,7 @@
               />
             </button>
 
-            <button type="button">
+            <button type="button" @click="router.push({ name: 'Favorites' })">
               <span class="sr-only">View Favorites</span>
               <img src="../assets/svg/heart-filled-red.svg" alt="favorite" />
             </button>
@@ -149,6 +153,9 @@ import { ref } from 'vue';
 import IndeterminateProgressBar from './IndeterminateProgressBar.vue';
 import ShoppingCartSideBar from './ShoppingCartSideBar.vue';
 import SearchBar from './SearchBar.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const isCartSideBarOpen = ref(false);
 
