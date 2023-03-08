@@ -1,10 +1,12 @@
 <template>
   <nav-bar />
   <router-view />
+  <error-handler />
 </template>
 
 <script setup lang="ts">
 import NavBar from '@/components/NavBar.vue';
+import ErrorHandler from './views/ErrorHandler.vue';
 </script>
 
 <style lang="scss">

@@ -163,5 +163,3 @@ const toggleCartSideBar = () => {
   isCartSideBarOpen.value = !isCartSideBarOpen.value;
 };
 </script>
-
-<style scoped lang="scss"></style>
