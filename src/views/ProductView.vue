@@ -59,11 +59,11 @@
             <h3 class="sr-only">Rating</h3>
             <div class="flex items-center">
               <div class="flex items-center">
-                <img src="../assets/svg/star.svg" alt="rating" />
-                <img src="../assets/svg/star.svg" alt="rating" />
-                <img src="../assets/svg/star.svg" alt="rating" />
-                <img src="../assets/svg/star.svg" alt="rating" />
-                <img src="../assets/svg/star.svg" alt="rating" />
+                <div
+                  class="rating-stars"
+                  :style="{ '--rating': productInfo?.rating }"
+                  :aria-label="`Rating of this product is ${productInfo?.rating} out of 5.`"
+                />
               </div>
               <a
                 href="#"
@@ -146,3 +146,23 @@ const productInfo = computed(() => {
 
 productStore.fetchSingleProduct(Number(route.params.id));
 </script>
+
+<style lang="scss" scoped>
+.rating-stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+
+  @apply inline-block text-[25px] leading-[0.8];
+  font-family: Times; // make sure ★ appears correctly
+
+  &::before {
+    content: '★★★★★';
+    background: linear-gradient(
+      90deg,
+      #fde047 var(--percent),
+      #e5e7eb var(--percent)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+</style>
