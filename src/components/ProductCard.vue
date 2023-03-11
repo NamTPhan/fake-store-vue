@@ -16,11 +16,11 @@
       </a>
     </div>
     <div class="flex mt-2.5 mb-5">
-      <img src="../assets/svg/star.svg" alt="rating" />
-      <img src="../assets/svg/star.svg" alt="rating" />
-      <img src="../assets/svg/star.svg" alt="rating" />
-      <img src="../assets/svg/star.svg" alt="rating" />
-      <img src="../assets/svg/star.svg" alt="rating" />
+      <div
+        class="rating-stars"
+        :style="{ '--rating': rating }"
+        :aria-label="`Rating of this product is ${rating} out of 5.`"
+      />
       <span
         class="bg-blue-100 text-sm font-semibold px-2.5 py-0.5 rounded ml-3"
       >
@@ -91,5 +91,23 @@ const addToCart = () => {
 <style lang="scss" scoped>
 .card-container {
   @apply flex flex-col bg-white p-4 w-[300px] h-[350px] shadow-md rounded-lg border border-gray-200;
+}
+
+.rating-stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+
+  @apply inline-block text-[25px] leading-[0.8];
+  font-family: Times; // make sure ★ appears correctly
+
+  &::before {
+    content: '★★★★★';
+    background: linear-gradient(
+      90deg,
+      #fde047 var(--percent),
+      #e5e7eb var(--percent)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 </style>
