@@ -13,7 +13,11 @@
           >
         </div>
         <div class="hidden sm:block">
-          <search-bar placeholder="Search in store" />
+          <search-bar
+            v-model="searchQuery"
+            placeholder="Search in store"
+            @handle-search="searchProducts"
+          />
         </div>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6 space-x-2">
@@ -182,9 +186,12 @@ import IndeterminateProgressBar from './IndeterminateProgressBar.vue';
 import ShoppingCartSideBar from './ShoppingCartSideBar.vue';
 import SearchBar from './SearchBar.vue';
 import { useRouter } from 'vue-router';
+import { useProductsStore } from '@/store/products';
 
 const router = useRouter();
+const productsStore = useProductsStore();
 
+const searchQuery = ref(undefined);
 const isCartSideBarOpen = ref(false);
 const isMobileMenuOpen = ref(false);
 
@@ -194,5 +201,9 @@ const toggleCartSideBar = () => {
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
+};
+
+const searchProducts = () => {
+  productsStore.searchProducts(searchQuery.value);
 };
 </script>

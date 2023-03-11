@@ -77,7 +77,7 @@ export const useProductsStore = defineStore('products', {
         });
     },
 
-    async searchProducts(searchQuery: string) {
+    async searchProducts(searchQuery: string | undefined) {
       const errorStore = useErrorStore();
       axios
         .get<any>(`https://dummyjson.com/products/search?q=${searchQuery}`)
