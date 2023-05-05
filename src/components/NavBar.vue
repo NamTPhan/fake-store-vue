@@ -12,7 +12,7 @@
             >Fake Store</span
           >
         </div>
-        <div class="hidden sm:block">
+        <div class="hidden md:block">
           <search-bar
             v-model="searchQuery"
             placeholder="Search in store"
@@ -133,7 +133,11 @@
     <!-- Mobile menu, show/hide based on menu state-->
     <div v-if="isMobileMenuOpen" id="mobile-menu" class="block md:hidden">
       <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-        <search-bar placeholder="Search in store" />
+        <search-bar
+          v-model="searchQuery"
+          placeholder="Search in store"
+          @handle-search="searchProducts"
+        />
         <!-- TODO: Replace hidden with block -->
         <a
           href="#"
@@ -181,7 +185,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import IndeterminateProgressBar from './IndeterminateProgressBar.vue';
 import ShoppingCartSideBar from './ShoppingCartSideBar.vue';
 import SearchBar from './SearchBar.vue';
@@ -195,6 +199,13 @@ const searchQuery = ref(undefined);
 const isCartSideBarOpen = ref(false);
 const isMobileMenuOpen = ref(false);
 
+watch(searchQuery, (newValue, oldValue) => {
+  if (newValue === '') {
+    productsStore.fetchAllProducts();
+    router.push({ name: 'Home' });
+  }
+});
+
 const toggleCartSideBar = () => {
   isCartSideBarOpen.value = !isCartSideBarOpen.value;
 };
@@ -205,5 +216,6 @@ const toggleMobileMenu = () => {
 
 const searchProducts = () => {
   productsStore.searchProducts(searchQuery.value);
+  router.push({ name: 'Home' });
 };
 </script>
