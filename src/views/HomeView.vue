@@ -11,9 +11,15 @@
     <div class="flex flex-row flex-wrap justify-center mx-5 my-3">
       <select
         id="categories"
+        v-model="selectedCategory"
         class="md:hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        @change="
+          selectedCategory !== ''
+            ? getProductsFromCategory(selectedCategory)
+            : productStore.fetchAllProducts()
+        "
       >
-        <option selected>Select a category</option>
+        <option value="" selected>Select a category</option>
         <option
           v-for="category in getProductCategories"
           :key="category"
@@ -65,7 +71,9 @@ import { IProduct } from '@/interfaces/product';
 import { useCartStore } from '@/store/cart';
 import { useFavoritetore } from '@/store/favorites';
 import { useProductsStore } from '@/store/products';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+
+const selectedCategory = ref('');
 
 const productStore = useProductsStore();
 const favoriteStore = useFavoritetore();
