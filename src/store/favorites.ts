@@ -17,7 +17,7 @@ export const useFavoritetore = defineStore('favorites', {
         );
         toast('Removed from favorites!', {
           type: 'success',
-          autoClose: 2000,
+          autoClose: 1000,
           position: toast.POSITION.TOP_RIGHT,
           theme: 'colored',
           transition: 'slide',
@@ -26,7 +26,7 @@ export const useFavoritetore = defineStore('favorites', {
         this.favorites.push(product);
         toast('Successfully added to favorites!', {
           type: 'success',
-          autoClose: 2000,
+          autoClose: 1000,
           position: toast.POSITION.TOP_RIGHT,
           theme: 'colored',
           transition: 'slide',

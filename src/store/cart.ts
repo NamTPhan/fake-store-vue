@@ -14,7 +14,7 @@ export const useCartStore = defineStore('cart', {
       this.cart.push(product);
       toast('Added to shopping cart', {
         type: 'success',
-        autoClose: 2000,
+        autoClose: 1000,
         position: toast.POSITION.TOP_RIGHT,
         transition: 'slide',
       });
@@ -24,7 +24,7 @@ export const useCartStore = defineStore('cart', {
       this.cart.splice(index, 1);
       toast('Removed from shopping cart', {
         type: 'success',
-        autoClose: 2000,
+        autoClose: 1000,
         position: toast.POSITION.TOP_RIGHT,
         transition: 'slide',
       });
