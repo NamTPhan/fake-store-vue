@@ -8,7 +8,7 @@
 
     <div class="flex flex-col md:flex-row justify-center flex-wrap py-4 px-6">
       <div
-        v-for="product in getFavorites"
+        v-for="product in getFavorites as IProduct[]"
         :key="product.id"
         class="flex justify-center mx-2 my-2"
       >
@@ -47,5 +47,3 @@ const isProductInFavorites = (product: IProduct): boolean => {
   );
 };
 </script>
-
-<style scoped></style>

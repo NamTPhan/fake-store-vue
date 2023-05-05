@@ -4,7 +4,7 @@ import { toast } from 'vue3-toastify';
 
 export const useFavoritetore = defineStore('favorites', {
   state: (): any => ({
-    favorites: [],
+    favorites: [] as IProduct[],
   }),
   getters: {
     getFavorites: (state) => state.favorites,
