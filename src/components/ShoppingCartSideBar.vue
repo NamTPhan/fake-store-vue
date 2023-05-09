@@ -5,10 +5,6 @@
     role="dialog"
     aria-modal="true"
   >
-    <div
-      class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-    ></div>
-
     <div class="fixed inset-0 overflow-hidden">
       <div class="absolute inset-0 overflow-hidden">
         <div
@@ -128,6 +124,10 @@
                 </div>
               </div>
             </div>
+            <div
+              class="fixed -z-10 inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+              @click="handleCloseSideBar"
+            ></div>
           </div>
         </div>
       </div>

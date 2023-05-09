@@ -25,7 +25,7 @@
           :key="category"
           :value="category"
         >
-          {{ category }}
+          {{ category.replace('-', ' ') }}
         </option>
       </select>
 
@@ -39,7 +39,7 @@
           class="absolute inset-0 w-3 bg-green-500 transition-all duration-[250ms] ease-out group-hover:w-full"
         ></div>
         <span class="relative text-black group-hover:text-white capitalize">
-          {{ category }}</span
+          {{ category.replace('-', ' ') }}</span
         >
       </button>
     </div>
