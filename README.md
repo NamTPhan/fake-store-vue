@@ -1,4 +1,7 @@
 # fake-store-vue
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7ba26b74-26db-40c5-b3e8-b3724a22bd05/deploy-status?branch=master)](https://app.netlify.com/sites/fake-store-vue/deploys)
+
 Fake webshop built with Vue3
 
 ## Project setup
@@ -30,6 +33,3 @@ yarn test:e2e
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

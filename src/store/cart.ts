@@ -12,7 +12,7 @@ export const useCartStore = defineStore('cart', {
   actions: {
     addToCart(product: IProduct) {
       this.cart.push(product);
-      toast('Added to shopping cart', {
+      toast('Successfully added to cart!', {
         type: 'success',
         autoClose: 1000,
         position: toast.POSITION.TOP_RIGHT,
@@ -22,7 +22,7 @@ export const useCartStore = defineStore('cart', {
 
     removeFromCart(index: number) {
       this.cart.splice(index, 1);
-      toast('Removed from shopping cart', {
+      toast('Removed from cart!', {
         type: 'success',
         autoClose: 1000,
         position: toast.POSITION.TOP_RIGHT,
